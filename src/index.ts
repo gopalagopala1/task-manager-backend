@@ -1,6 +1,7 @@
 import express, { Express, Request, Response } from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
+import errorHandler from './middleware/error';
 
 // for accessing the environment variables
 dotenv.config();
@@ -17,6 +18,8 @@ app.use(express.json()); // parsing this incoming requests with json payloads
 app.get('/', (req: Request, res: Response) => {
   res.send('Hello World');
 });
+
+app.use(errorHandler);
 
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
